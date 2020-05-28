@@ -36,30 +36,39 @@ require 'byebug'
 # Input: nums = [1], index = [0]
 # Output: [1]
 
+#################  Second Try... Just use insert method  #######################
+def create_target_array(nums, index)
+  target = []
+  (0...nums.length).each do |i|
+    target.insert(index[i], nums[i])
+  end
+  target
+end
 
 ##################### first try: SHIT TIME COMPLEXITY #########################
-def create_target_array(nums, index)
-  indexes = []
-  hash = {}
-  (0...index.length).each do |i|
-    if hash[index[i]]
-      (0...i).each do |j|
-        if indexes[j] >= index[i]
-          indexes[j] += 1
-        end
-      end
-    end
-    hash[index[i]] = 0
-    indexes.push(index[i])
-  end
-  answer = Array.new(index.length, 0)
-  j = 0
-  indexes.each do |idx|
-    answer[idx] = nums[j]
-    j += 1
-  end
-  answer
-end
+# def create_target_array(nums, index)
+#   indexes = []
+#   hash = {}
+#   (0...index.length).each do |i|
+#     if hash[index[i]]
+#       (0...i).each do |j|
+#         if indexes[j] >= index[i]
+#           indexes[j] += 1
+#         end
+#       end
+#     end
+#     hash[index[i]] = 0
+#     indexes.push(index[i])
+#   end
+#   answer = Array.new(index.length, 0)
+#   j = 0
+#   indexes.each do |idx|
+#     answer[idx] = nums[j]
+#     j += 1
+#   end
+#   answer
+# end
+
 
 nums = [0,1,2,3,4]
 index = [0,1,2,2,1]
