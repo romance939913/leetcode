@@ -7,17 +7,16 @@
 // Explanation: This is not the only correct answer, [3, 1, 4, null, 2, null, null] is also correct.
 
 /*
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.left = (left===undefined ? null : left)
- *     this.right = (right===undefined ? null : right)
- * }
- */
-/*
- * @param {TreeNode} root
- * @return {TreeNode}
- */
+Definition for a binary tree node.
+function TreeNode(val, left, right) {
+  this.val = (val===undefined ? 0 : val)
+  this.left = (left===undefined ? null : left)
+  this.right = (right===undefined ? null : right)
+}
+
+@param {TreeNode} root
+@return {TreeNode}
+*/
 
 var balanceBST = root => {
   let orderedArray = getArrayValues(root);
