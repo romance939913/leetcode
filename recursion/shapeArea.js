@@ -14,12 +14,12 @@
 // shapeArea(n) = 13.
 
 function shapeArea(n) {
-  if (n === 1) return 1;
+  if (n === 1) return 1
 
-  return shapeArea(n - 1) + n + n + (n - 2) + (n - 2);
+  return shapeArea(n - 1) + 4 * (n-1)
 }
 
-console.log(shapeArea(1));
-console.log(shapeArea(2));
-console.log(shapeArea(3)); //13
-console.log(shapeArea(4)); //25
+console.log(shapeArea(1)) // 1
+console.log(shapeArea(2)) // 5
+console.log(shapeArea(3)) // 13
+console.log(shapeArea(4)) // 25
