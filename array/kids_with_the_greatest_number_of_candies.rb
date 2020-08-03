@@ -50,3 +50,28 @@ candies = [2,3,5,1,3]
 extra_candies = 3
 
 p kids_with_candies(candies, extra_candies) # Output: [true,true,true,false,true] 
+
+function prefixStrings(a, b) {
+    let pojo = {};
+    a.forEach(pre => pojo[pre] = 'truthy');
+    
+    for (let i = 0; i < a.length - 1; i++) {
+        for (let j = i + 1; j < a.length; j++) {
+            let word = a[i] + a[j];
+            pojo[word] = 'truthy';
+        }
+    }
+    a.reverse();
+    for (let i = 0; i < a.length - 1; i++) {
+        for (let j = i + 1; j < a.length; j++) {
+            let word = a[i] + a[j];
+            pojo[word] = 'truthy';
+        }
+    }
+    debugger
+    let bool = true;
+    b.forEach(str => {
+        if (!pojo[str]) bool = false;
+    })
+    return bool;
+}

@@ -13,13 +13,28 @@ Example
 
 For
 
-matrix = [[0, 1, 1, 2], // 
-          [0, 5, 0, 0],
-          [2, 0, 3, 3]]
+matrix = [[0, 1, 1, 2], // 0, x
+          [0, 5, 0, 0], // 1, x
+          [2, 0, 3, 3]] // 2, x
+
+matrix = [[1,1,1,0],
+          [0,5,0,1],
+          [2,1,3,10]]
           
 the output should be
 matrixElementsSum(matrix) = 9.*/
 
 function matrixElementsSum(matrix) {
+  let pojo = {};
+  let cost = 0;
 
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[0].length; j++) {
+      if (matrix[i][j] === 0) pojo[j] = 'Kobe';
+      if (!pojo[j]) {
+        cost += matrix[i][j];
+      }
+    }
+  }
+  return cost;
 }
