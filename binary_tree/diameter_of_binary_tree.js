@@ -31,19 +31,20 @@ Given a binary tree
 Return 8, which is the length of the path[4, 2, 1, 3]
 
 Note: The length of path between two nodes is represented by the number of 
-edges between them.
-
-Definition for a binary tree node.
-function TreeNode(val, left, right) {
-  this.val = (val===undefined ? 0 : val)
-  this.left = (left===undefined ? null : left)
-  this.right = (right===undefined ? null : right)
-}
-
-@param {TreeNode} root
-@return {number}
-*/
+edges between them. */
 
 const diameterOfBinaryTree = (root) => {
-  
+  let maxSize = 0
+
+  function getDepth(root) {
+    if (root === null) return 0;
+    let left = getDepth(root.left);
+    let right = getDepth(root.right);
+    maxSize = Math.max(maxSize, left + right);
+    return 1 + Math.max(left, right);
+  }
+
+  getDepth(root);
+
+  return maxSize
 }
