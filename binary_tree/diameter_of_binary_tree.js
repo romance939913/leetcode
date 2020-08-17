@@ -33,7 +33,7 @@ Return 8, which is the length of the path[4, 2, 1, 3]
 Note: The length of path between two nodes is represented by the number of 
 edges between them. */
 
-const diameterOfBinaryTree = (root) => {
+var diameterOfBinaryTree = function (root) {
   let maxSize = 0
 
   function getDepth(root) {
@@ -46,5 +46,5 @@ const diameterOfBinaryTree = (root) => {
 
   getDepth(root);
 
-  return maxSize
-}
+  return maxSize;
+};
