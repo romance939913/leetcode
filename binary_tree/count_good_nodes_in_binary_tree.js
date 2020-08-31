@@ -35,6 +35,68 @@ function TreeNode(val, left, right) {
 @return {number} */
 
 
-var goodNodes = function (root) {
-
+var goodNodes = function(root) {
+  if (!root.val) return 0;
+      
+  let currentMax = root.val;
+  let goodNodeCount = 1;
+  
+  let dfs = function(node) {
+      
+  }
+  
+  dfs(root.left);
+  dfs(root.right);
+  
+  return goodNodeCount;
 };
+
+class App extends React.Component {
+  constructor(props) {
+      super(props)
+      this.state = {
+          docName: '',
+          email: ''
+      }
+  }
+  
+  update(field) {
+      return e => {
+          this.setState({ 
+              [field]: e.currentTarget.value,
+          })
+      }
+  }
+  
+render() {
+  return (
+      <form>
+          <select> 
+              <option defaultValue>Plain</option>
+              <option value="1">PDF</option>
+              <option value="2">CSV</option>
+          </select>
+          <input 
+              type="text"
+              value={this.state.docName}
+              onChange={this.update('docName')}
+          />
+          <select> 
+              <option defaultValue></option>
+              <option value="1">cat 1</option>
+              <option value="2">cat 2</option>
+          </select>
+          <input 
+              type="text"
+              value={this.state.email}
+              onChange={this.update('docName')}
+          />
+      </form>
+  );
+}
+}
+
+ReactDOM.render(
+<App />,
+document.getElementById('app')
+);
