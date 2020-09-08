@@ -35,19 +35,15 @@ function TreeNode(val, left, right) {
 @return {number} */
 
 
-var goodNodes = function(root) {
-  if (!root.val) return 0;
-      
-  let currentMax = root.val;
-  let goodNodeCount = 1;
-  
-  let dfs = function(node) {
-      
+let goodNodes = (root) => {
+  let good = 0;
+  function dfs(node, max) {
+      if (!node) return null;
+      if (node.val >= max) good++;
+      dfs(node.left, Math.max(max, node.val));
+      dfs(node.right, Math.max(max, node.val));
   }
-  
-  dfs(root.left);
-  dfs(root.right);
-  
-  return goodNodeCount;
+  dfs(root, root.val);
+  return good;
 };
 
