@@ -28,26 +28,19 @@ function TreeNode(val, left, right) {
 */
 var deepestLeavesSum = function(root) {
     let hash = {};
-    let queue = [root];
-    let depth = 0;
 
-    while (queue.length > 0) {
-        let num = queue.length;
-        for (let i = 0; i < num; i++) {
-            if (hash[depth]) {
-                hash[depth].push(queue[i]);
-            } else {
-                hash[depth] = [];
-                hash[depth].push(queue[i]);
-            }
-            if (!!queue[i].left) queue.push(queue[i].left);
-            if (!!queue[i].right) queue.push(queue[i].right);
+    function dfs(node, depth) {
+        if (!node) return null;
+        if (!node.left && !node.right) {
+            !!hash[depth] ? hash[depth].push(node.val) : hash[depth] = [node.val];
+        } else {
+            depth++;
         }
-        queue = queue.slice(num)
-        depth++;
+        dfs(node.left, depth);
+        dfs(node.right, depth);
     }
+    dfs(root, 0)
 
-    let keys = Object.keys(hash)
-    let maxDepth = Math.max(...keys)
+    let maxDepth = Math.max(...Object.keys(hash))
     return hash[maxDepth].reduce((acc, ele) => acc + ele.val, 0)
 };
