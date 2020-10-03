@@ -36,14 +36,14 @@ function TreeNode(val, left, right) {
 
 
 let goodNodes = (root) => {
-  let good = 0;
+  let goodNodes = 0;
   function dfs(node, max) {
       if (!node) return null;
-      if (node.val >= max) good++;
+      if (node.val >= max) goodNodes++;
       dfs(node.left, Math.max(max, node.val));
       dfs(node.right, Math.max(max, node.val));
   }
   dfs(root, root.val);
-  return good;
+  return goodNodes;
 };
 

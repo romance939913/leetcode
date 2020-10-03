@@ -10,5 +10,9 @@
 # Input: "cbbd"
 # Output: "bb"
 
-class Solution:
-    def longestPalindrome(self, s: str) -> str:
+def longestPalindrome(word):
+    longest = ''
+    stack = []
+    wordbeginning
+    for char in word:
+        

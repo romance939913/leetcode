@@ -1,5 +1,5 @@
-/*
-Problem #1302
+/* Problem #1302
+
 Given a binary tree, return the sum of values of its deepest leaves.
 
             1

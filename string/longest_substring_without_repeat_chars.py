@@ -27,4 +27,7 @@
 # s consists of English letters, digits, symbols and spaces.
 
 def lengthOfLongestSubstring(arg):
+    i = 0
+    j = 1
+    while j < len(arg):
         
