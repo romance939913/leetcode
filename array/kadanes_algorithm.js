@@ -1,0 +1,10 @@
+//kadane's algo
+//input: int array
+//output: subarray that sums to the max
+//if the next number added will cause the sum to be //smaller than current sum, then skip.
+let array = [3, 5, -9, 1, 3, -2, 3, 4, 7, 2, -9, 6, 3, 1, -5, 4]
+// output = 19 --> [1, 3, -2, 3, 4, 7, 2, -9, 6, 3, 1]
+// let arr= [3,-8,5,8,-10]
+//[5,8]
+// let otherArr = [6, 3, -10, 4, -14, 5, 8, 10, 4, -3, -5, 8, 2, -1]
+// output = 29 --> [5, 8, 10, 4, -3, -5, 8, 2]
