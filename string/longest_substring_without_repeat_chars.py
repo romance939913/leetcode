@@ -1,6 +1,7 @@
+# Problem # 3
 # Given a string s, find the length of the longest substring without repeating characters.
-# Example 1:
 
+# Example 1:
 # Input: s = "abcabcbb"
 # Output: 3
 # Explanation: The answer is "abc", with the length of 3.
@@ -22,12 +23,23 @@
  
 
 # Constraints:
-
 # 0 <= s.length <= 5 * 104
 # s consists of English letters, digits, symbols and spaces.
 
-def lengthOfLongestSubstring(arg):
-    i = 0
-    j = 1
-    while j < len(arg):
-        
+def length_of_longest_substring(word):
+    longest = 0
+    counts = {}
+    for char in word:
+        if char in counts:
+            if longest < len(list(counts.keys())):
+                longest = len(list(counts.keys()))
+            counts = { char: True }
+        else:
+            counts[char] = True
+    return longest
+
+print(length_of_longest_substring("abcabcbb")) # 3
+print(length_of_longest_substring("bbbbb")) # 1 
+print(length_of_longest_substring("pwwkew")) # 3
+print(length_of_longest_substring("")) # 0
+
