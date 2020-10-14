@@ -27,6 +27,7 @@ createList(list, argArr)
 var reverseBetween = function(head, m, n) {
     let iterate = head;
     let arr = [iterate.val];
+    debugger
     while (iterate.next !== null) {
         iterate = iterate.next;
         arr.push(iterate.val);

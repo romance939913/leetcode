@@ -1,6 +1,5 @@
 # problem  #5
 import functools
-
 # Given a string s, find the longest palindromic substring in s. 
 # You may assume that the maximum length of s is 1000.
 
@@ -13,13 +12,21 @@ import functools
 # Input: "cbbd"
 # Output: "bb"
 
+# Example 3:
+# Input: s = "a"
+# Output: "a"
+
+# Example 4:
+# Input: s = "ac"
+# Output: "a"
+
 def longestPalindrome(word):
     pals = []
     stack = []
     current_word = ''
     for char in word:
         current_word += char
-        if stack[-1] != char:
+        if not stack or stack[-1] != char:
             stack.append(char)
         else:
             stack.pop()
