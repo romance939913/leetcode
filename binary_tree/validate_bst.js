@@ -1,4 +1,4 @@
-/*
+/* Problem #98
 Given a binary tree, determine if it is a valid binary search tree (BST).
 
 Assume a BST is defined as follows:
@@ -30,19 +30,20 @@ Explanation: The root node's value is 5 but its right child's value is 4.
 */
 
 function validateBST(root) {
-    const answer = [];
-    
-    function dfs(node) {
-      if (!!node) {
-        dfs(node.left);
-        answer.push(node.val);
-        dfs(node.right);
-      }
-    }
-    dfs(root);
+  const answer = [];
   
-    for (let i = 0; i < answer.length - 1; i++) {
-      if (answer[i] > answer[i + 1]) return false;
+  function dfs(node) {
+    if (!!node) {
+      dfs(node.left);
+      answer.push(node.val);
+      console.log(answer)
+      dfs(node.right);
     }
-    return true;
   }
+  dfs(root);
+
+  for (let i = 0; i < answer.length - 1; i++) {
+    if (answer[i] >= answer[i + 1]) return false;
+  }
+  return true;
+}
