@@ -25,15 +25,14 @@ Output: 0
 const numIdenticalPairs = (nums) => {
     let counts = {};
 
-    nums.forEach(num => {
-        !!counts[num] ? counts[num] += 1 : counts[num] = 1;
-    })
-
-    let values = Object.values(counts).filter(count => count > 1);
-
+    nums.forEach(num => !!counts[num] ? counts[num] += 1 : counts[num] = 1)
+    // {counts} is each array element and it's frequency
+    let frequencies = Object.values(counts).filter(count => count > 1);
+    // [values] is all the frequencies greater than 1
     let pairs = 0;
 
-    values.forEach(value => {
+    debugger
+    frequencies.forEach(value => {
         let arr = [...Array(value).keys()].slice(1)
         pairs += arr.reduce((acc, ele) => acc + ele, 0)
     })
@@ -41,7 +40,7 @@ const numIdenticalPairs = (nums) => {
     return pairs;
 };
 
-// console.log(numIdenticalPairs([1,2,1,1,1,1,2])); // 11
-// console.log(numIdenticalPairs([1,1,1,1])); // 6
-// console.log(numIdenticalPairs([1,2,3])); // 0
-// console.log(numIdenticalPairs([1,2,3,1,1,3])); // 4
+console.log(numIdenticalPairs([1,2,1,1,1,1,2])); // 11
+console.log(numIdenticalPairs([1,1,1,1])); // 6
+console.log(numIdenticalPairs([1,2,3])); // 0
+console.log(numIdenticalPairs([1,2,3,1,1,3])); // 4

@@ -28,15 +28,14 @@
 
 def length_of_longest_substring(word):
     longest = 0
-    counts = {}
-    for char in word:
-        if char in counts:
-            if longest < len(list(counts.keys())):
-                longest = len(list(counts.keys()))
-            counts = { char: True }
-        else:
-            counts[char] = True
-    return longest
+    characterHash = {}
+    right = 0
+    left = 0
+    while right < len(word):
+        if word[right] in characterHash:
+            
+            shift_left = True
+
 
 print(length_of_longest_substring("abcabcbb")) # 3
 print(length_of_longest_substring("bbbbb")) # 1 

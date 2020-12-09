@@ -36,7 +36,6 @@ function validateBST(root) {
     if (!!node) {
       dfs(node.left);
       answer.push(node.val);
-      console.log(answer)
       dfs(node.right);
     }
   }

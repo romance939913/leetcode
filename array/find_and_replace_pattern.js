@@ -27,3 +27,7 @@ since a and b map to the same letter.
 var findAndReplacePattern = function (words, pattern) {
 
 };
+
+var helperFunction = (word, pattern) => {
+  for ()
+}

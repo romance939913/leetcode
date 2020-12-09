@@ -37,9 +37,7 @@ const alternatingSort = (array) => {
       counter++;
     }
   }
-  debugger
   let sorted = result.sort();
-  debugger
   return sorted === result
 }
 
