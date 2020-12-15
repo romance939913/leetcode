@@ -29,9 +29,9 @@
 const length_of_longest_substring = str => {
     let longest = 0;
     let letterHash = {};
-
     let left = 0;
-    let right = 0
+    let right = 0;
+
     while (right < str.length) {
         if (!!letterHash[str[right]]) {
             longest = Math.max(longest, right - left);

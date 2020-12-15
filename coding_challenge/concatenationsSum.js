@@ -1,4 +1,5 @@
-/*Given an array of positive integers a, your task is to calculate the sum of every 
+/*
+Given an array of positive integers a, your task is to calculate the sum of every 
 possible a[i]∘ a[j], where a[i]∘ a[j] is the concatenation of the string representations 
 of a[i] and a[j] respectively.
 
@@ -20,7 +21,8 @@ Input / Output
 A non - empty array of positive integers.
 
 The sum of all a[i]∘ a[j]s.It's guaranteed that the answer is less than 253.
-[JavaScript(ES6)] Syntax Tips */
+[JavaScript(ES6)] Syntax Tips 
+*/
 
 const concatenationsSum = (array) => {
   let sum = 0;

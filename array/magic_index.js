@@ -19,27 +19,25 @@ function randomArray(len) {
     return arr.sort((a, b) => { return a - b });
 }
 
-// create a forloop and if index === element value
-// add that to a result array
-// if result array is empty then return -1
-
-// edge cases that could throw errors:
-
-function getMagicIndex(arr) {
-    if (arr.length === 0) return -1;
-
-    let mid = Math.floor(arr.length / 2);
-    if (arr[mid] === mid) {
-        return mid;
-    } else if (arr[mid] < mid) {
-        return getMagicIndex(arr.slice(0, mid));
-    } else {
-        let result = getMagicIndex(arr.slice(mid + 1));
-        return result === -1 ? -1 : result + mid + 1;
+/* O(logN) solution
+checks the mid point index between the start and end each time. 
+each recursive call changes the start or end to be after or before the mid point (respectivly)
+*/
+function getMagicIndex(arr, start, end) {
+    if (start <= end) {
+        let mid = Math.floor((start + end) / 2)
+        if (arr[mid] === mid) {
+            return mid;
+        } else if (mid > arr[mid]) {
+            return getMagicIndex(arr, mid + 1, end)
+        } else {
+            return getMagicIndex(arr, start, mid - 1);
+        }
     }
+    return -1;
 }
 
 const magicalArray = randomArray(16);
 console.log('Arr: ', magicalArray);
-console.log('Magic Index: ', getMagicIndex(magicalArray));
+console.log('Magic Index: ', getMagicIndex(magicalArray, 0, magicalArray.length - 1));
   
