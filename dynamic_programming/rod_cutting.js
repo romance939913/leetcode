@@ -7,12 +7,14 @@ build up an arrray of the same length as input array
 at each position in the array, store the max profit you can get for a rod of
 that length
 */
+
 // when i = 2, checking a rod of length 3
 // all the other prev combinations are between lengths 1 and 2
 
 
-function rodCutting(n, arr) {
-    const newArr = [];
+function rodCutting(arr) {
+    const newArr = []; // memo
+    
     for (let i = 0; i < arr.length; i++) {
         let j = i - 1;
         let k = 0;
@@ -27,6 +29,8 @@ function rodCutting(n, arr) {
     return newArr[newArr.length - 1];
 }
 
-let length = 6;
 let rodValues = [2, 5, 7, 11, 11, 13];
-console.log(rodCutting(length, rodValues)); // => 16 (slices of size 2 & 4)
+console.log(rodCutting(rodValues)); // => 16 (slices of size 2 & 4)
+
+let rodValues1 = [2, 6, 7, 8, 10, 13, 15, 16];
+console.log(rodCutting(rodValues1)); // => 18 (slices of size 2 & 6)
