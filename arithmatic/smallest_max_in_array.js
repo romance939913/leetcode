@@ -1,8 +1,4 @@
-/* Company: Bloomberg L.P.
-    Stage: phone_screen
-All Questions asked:
-confidence: 3
-
+/* 
 question: Given a list of integers and a desired sum, write a function that calculates a threshold number x
 such that when summing up the list of integers everything greater than x can be substituted with x
 to give the desired sum.For example, if given a list[1, 2, 5] and a desired sum of 6. a threshold of
