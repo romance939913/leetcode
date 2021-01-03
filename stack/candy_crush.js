@@ -5,7 +5,6 @@ Candy crush words - removing letters that appear at least 3 times in a row
 ("" => "")
 (ABCCCBBB => ABBBB => A)
 (AAABBBCC => CC)
-
 Strategy: 
 Utilize a stack
 elements are tuples that hold the character and amount
@@ -16,7 +15,7 @@ before adding to stack check top to see if same element
 function candyCrush(str) {
   let stack = [];
   stack.push([str[0], 1]);
-  
+
   let i = 1;
   while (i < str.length) {
     if (stack.length === 0) {
@@ -56,31 +55,31 @@ console.log(candyCrush("ABCCCCCCBBAADD")) // => "DD"
 console.log(candyCrush("CCCCCC")) // => ""
 
 
-// First try
-// Not optimal because iterator resets to beginning once it finds a streak
-// touches some characters multiple times
-function candyCrush(str) {
-  let i = 0;
-  let streaking = false;
+// // First try
+// // Not optimal because iterator resets to beginning once it finds a streak
+// // touches some characters multiple times
+// function candyCrush(str) {
+//   let i = 0;
+//   let streaking = false;
 
-  while (str[i + 1] !== undefined) {
-    if (str[i] === str[i + 1]) {
-      let beginning = i;
-      streaking = true;
-      while (streaking) {
-        if (str[i] === str[i + 1]) {
-          i++;
-        } else {
-          streaking = false;
-        }
-        if (i - beginning >= 2) {
-          str = str.slice(0, beginning) + str.slice(i + 1);
-          i = 0;
-        }
-      }
-    } else {
-      i++;
-    }
-  }
-  return str
-}
+//   while (str[i + 1] !== undefined) {
+//     if (str[i] === str[i + 1]) {
+//       let beginning = i;
+//       streaking = true;
+//       while (streaking) {
+//         if (str[i] === str[i + 1]) {
+//           i++;
+//         } else {
+//           streaking = false;
+//         }
+//         if (i - beginning >= 2) {
+//           str = str.slice(0, beginning) + str.slice(i + 1);
+//           i = 0;
+//         }
+//       }
+//     } else {
+//       i++;
+//     }
+//   }
+//   return str
+// }

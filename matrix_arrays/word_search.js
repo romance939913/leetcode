@@ -1,3 +1,4 @@
+// Leetcode problem #79
 // Problem: Given a 2D board and a word, find if the word exists in the grid.
 // The word can be constructed from letters of sequentially adjacent cell, where 
 // "adjacent" cells are those horizontally or vertically neighboring. 
@@ -83,15 +84,15 @@ const board3 = [
     ['A', 'A', 'A', 'A']
 ];
 
-// let word1 = "ABCCED";
-// let word2 = "SEE";
-// let word3 = "ABCB";
-// let word4 = "ABCX";
+let word1 = "ABCCED";
+let word2 = "SEE";
+let word3 = "ABCB";
+let word4 = "ABCX";
 let word5 = 'GECH';
 let word6 = 'AAAAAAAAAAAAZ';
-// console.log(wordSearch(word1, board)) // =>  true
-// console.log(wordSearch(word2, board)) // => true
-// console.log(wordSearch(word3, board)) // => false **** FIX ****** last idx included
-// console.log(wordSearch(word4, board)) // => false
+console.log(wordSearch(word1, board)) // =>  true
+console.log(wordSearch(word2, board)) // => true
+console.log(wordSearch(word3, board)) // => false
+console.log(wordSearch(word4, board)) // => false
 console.log(wordSearch(word5, board2)) // => true
 console.log(wordSearch(word6, board3)) // => true

@@ -27,7 +27,7 @@ def rod_cutting(lengths):
 
 
 rod_values = [2, 5, 7, 11, 11, 13]
-print(rod_cutting(rod_values)); # => 16 (slices of size 2 & 4)
+print(rod_cutting(rod_values)) # => 16 (slices of size 2 & 4)
 
 rod_values1 = [2, 6, 7, 8, 10, 13, 15, 16]
-print(rod_cutting(rod_values1)); # => 19 (slices of size 2 & 6)
+print(rod_cutting(rod_values1)) # => 19 (slices of size 2 & 6)
