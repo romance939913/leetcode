@@ -24,6 +24,7 @@ function wordSearch(word, board) {
     for (let i = 0; i < board.length; i++) {
         for (let j = 0; j < board[i].length; j++) {
             if (board[i][j] === word[0]) {
+                debugger
                 if (!!result) {
                     break;
                 } else {
@@ -36,8 +37,10 @@ function wordSearch(word, board) {
     }
 
     function recursionHelper(point, idx) {
-        if (idx === word.length) result = true;
-
+        if (idx >= word.length) {
+            result = true;
+            return null
+        }
         let possibleNextSteps = [];
         touchedPoints[`${point[0]},${point[1]}`] = true;
 
@@ -71,6 +74,12 @@ const board = [
     ['S', 'F', 'C', 'S'],
     ['A', 'D', 'E', 'E']
 ];
+
+const board4 = [
+    ["A", "B", "C", "E"], 
+    ["S", "F", "E", "S"], 
+    ["A", "D", "E", "E"]
+]
 const board2 = [
     ['G', 'H', 'G'],
     ['E', 'C', 'E'],
@@ -84,15 +93,17 @@ const board3 = [
     ['A', 'A', 'A', 'A']
 ];
 
-let word1 = "ABCCED";
-let word2 = "SEE";
-let word3 = "ABCB";
-let word4 = "ABCX";
-let word5 = 'GECH';
-let word6 = 'AAAAAAAAAAAAZ';
-console.log(wordSearch(word1, board)) // =>  true
-console.log(wordSearch(word2, board)) // => true
-console.log(wordSearch(word3, board)) // => false
-console.log(wordSearch(word4, board)) // => false
-console.log(wordSearch(word5, board2)) // => true
-console.log(wordSearch(word6, board3)) // => true
+// let word1 = "ABCCED";
+// let word2 = "SEE";
+// let word3 = "ABCB";
+// let word4 = "ABCX";
+// let word5 = 'GECH';
+// let word6 = 'AAAAAAAAAAAAZ';
+let word7 = "ABCESEEEFS"
+// console.log(wordSearch(word1, board)) // =>  true
+// console.log(wordSearch(word2, board)) // => true
+// console.log(wordSearch(word3, board)) // => false
+// console.log(wordSearch(word4, board)) // => false
+console.log(wordSearch(word7, board4)) // => true
+// console.log(wordSearch(word5, board2)) // => true
+// console.log(wordSearch(word6, board3)) // => true
