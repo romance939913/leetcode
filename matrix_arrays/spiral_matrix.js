@@ -1,23 +1,19 @@
-/*
-Given an m x n matrix, return all elements of the matrix in spiral order.
+// Given an m x n matrix, return all elements of the matrix in spiral order.
 
-Example 1:
-Input: matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-Output: [1, 2, 3, 6, 9, 8, 7, 4, 5]
+// Example 1:
+// Input: matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+// Output: [1, 2, 3, 6, 9, 8, 7, 4, 5]
 
-Example 2:
-Input: matrix = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]
-Output: [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7]
-*/
+// Example 2:
+// Input: matrix = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]
+// Output: [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7]
 
-/*
-variables: stopRight, stopDown, stopLeft, stopUp
-iterate arr[stopUp][i] until we hit stopRight, then increment stopUp
-iterate through each arr[i][stopRight] until stopDown, decrement stopRight
-iterate backwards through arr[stopDown][i] until stopLeft, decrement stopDown
-iterate up through arr[i][stopLeft] until stopUp, decrement stopDown
-stop if length of result arr = n * m
-*/
+// variables: stopRight, stopDown, stopLeft, stopUp
+// iterate arr[stopUp][i] until we hit stopRight, then increment stopUp
+// iterate through each arr[i][stopRight] until stopDown, decrement stopRight
+// iterate backwards through arr[stopDown][i] until stopLeft, decrement stopDown
+// iterate up through arr[i][stopLeft] until stopUp, decrement stopDown
+// stop if length of result arr = n * m
 
 function spiralMatrix(matrix) { 
     let stopRight = matrix[0].length;
