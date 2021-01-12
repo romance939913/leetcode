@@ -31,7 +31,7 @@ var addTwoNumbers = function (l1, l2) {
   recurse(l1, arr1);
   recurse(l2, arr2);
 
-  let newNum = parseInt(arr1.join("")) + parseInt(arr2.join(""));
+  let newNum = BigInt(arr1.join("")) + BigInt(arr2.join(""));
   let newArr = newNum.toString().split("");
   let newHead = new ListNode(parseInt(newArr.shift()));
 
