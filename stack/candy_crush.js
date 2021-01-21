@@ -13,8 +13,7 @@ before adding to stack check top to see if same element
 */
 
 function candyCrush(str) {
-  let stack = [];
-  stack.push([str[0], 1]);
+  let stack = [[str[0], 1]];
 
   let i = 1;
   while (i < str.length) {
