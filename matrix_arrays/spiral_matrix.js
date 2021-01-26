@@ -15,67 +15,66 @@
 // iterate up through arr[i][stopLeft] until stopUp, decrement stopDown
 // stop if length of result arr = n * m
 
-function spiralMatrix(matrix) { 
-    let stopRight = matrix[0].length;
-    let stopLeft = 0;
-    let stopUp = 0;
-    let stopDown = matrix.length;
-    let direction = 'right'
-    let coord = [0,0]
-    let resultArr = [];
-    let total = 0
+function spiralOrder(matrix) {
+    let coord = [0, 0];
+    let right = matrix[0].length - 1;
+    let bottom = matrix.length - 1;
+    let left = 0;
+    let top = 1;
+    let direction = 'right';
+    let result = [];
 
-    for (let i = 0; i < matrix.length; i++) {
-        for (let j = 0; j < matrix[i].length; j++) {
-            total++;
-        }
-    }
-
-    debugger
-    let stopCheck = true;
-    while (!!stopCheck) {
+    while (result.length < (matrix.length * matrix[0].length)) {
         switch (direction) {
             case 'right':
-                while (coord[1] < stopRight) {
-                    resultArr.push(matrix[stopUp][coord[1]])
+                while (coord[1] < right) {
+                    result.push(matrix[coord[0]][coord[1]])
                     coord[1]++;
                 }
-                if (resultArr.length === total) stopCheck = false;
+                result.push(matrix[coord[0]][coord[1]]);
                 direction = 'down';
-                stopRight--;
+                right--;
+                coord[0]++;
+                break;
             case 'down':
-                while (coord[0] < stopDown) {
-                    resultArr.push(matrix[coord[0]][stopRight]);
+                while (coord[0] < bottom) {
+                    result.push(matrix[coord[0]][coord[1]]);
                     coord[0]++;
                 }
-                if (resultArr.length === total) stopCheck = false;
+                result.push(matrix[coord[0]][coord[1]]);
                 direction = 'left';
-                stopDown--;
+                bottom--;
+                coord[1]--;
+                break;
             case 'left':
-                while (coord[1] > stopLeft) {
-                    resultArr.push(matrix[stopDown][coord[1]])
+                while (coord[1] > left) {
+                    result.push(matrix[coord[0]][coord[1]])
                     coord[1]--;
                 }
-                if (resultArr.length === total) stopCheck = false;
-                direction = 'right';
-                stopLeft++;
+                result.push(matrix[coord[0]][coord[1]])
+                direction = 'up';
+                left++;
+                coord[0]--;
+                break;
             case 'up':
-                while (coord[0] > stopUp) {
-                    resultArr.push(matrix[coord[0]][stopLeft]) 
-                    coord[0]++;
+                while (coord[0] > top) {
+                    result.push(matrix[coord[0]][coord[1]])
+                    coord[0]--;
                 }
-                if (resultArr.length === total) stopCheck = false;
-                direction = 'right'
-                stopUp++;
+                result.push(matrix[coord[0]][coord[1]])
+                direction = 'right';
+                top++;
+                coord[1]++;
+                break;
         }
     }
-    return resultArr;
+    return result;
 }
 
 
 let matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-console.log(spiralMatrix(matrix)) // => [1, 2, 3, 6, 9, 8, 7, 4, 5]
+console.log(spiralOrder(matrix)) // => [1, 2, 3, 6, 9, 8, 7, 4, 5]
 
 
 let matrix1 = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]
-console.log(spiralMatrix(matrix1)) // => [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7]
+console.log(spiralOrder(matrix1)) // => [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7]
