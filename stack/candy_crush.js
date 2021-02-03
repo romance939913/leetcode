@@ -53,32 +53,3 @@ console.log(candyCrush("ABCCCCCCBBDD")) // => "ADD"
 console.log(candyCrush("ABCCCCCCBBAADD")) // => "DD"
 console.log(candyCrush("CCCCCC")) // => ""
 
-
-// // First try
-// // Not optimal because iterator resets to beginning once it finds a streak
-// // touches some characters multiple times
-// function candyCrush(str) {
-//   let i = 0;
-//   let streaking = false;
-
-//   while (str[i + 1] !== undefined) {
-//     if (str[i] === str[i + 1]) {
-//       let beginning = i;
-//       streaking = true;
-//       while (streaking) {
-//         if (str[i] === str[i + 1]) {
-//           i++;
-//         } else {
-//           streaking = false;
-//         }
-//         if (i - beginning >= 2) {
-//           str = str.slice(0, beginning) + str.slice(i + 1);
-//           i = 0;
-//         }
-//       }
-//     } else {
-//       i++;
-//     }
-//   }
-//   return str
-// }

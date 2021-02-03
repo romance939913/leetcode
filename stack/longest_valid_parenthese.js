@@ -23,15 +23,7 @@ s[i] is '(', or ')'.
 */
 
 function longestValidParantheses(str) {
-    let stack = [];
-    for (let i = 0; i < str.length; i++) {
-        if (stack[stack.length - 1] === "(" && str[i] === ")") {
-            stack.pop();
-        } else {
-            stack.push(str[i])
-        }
-    }
-    return str.length - stack.length;
+
 }
 
 // console.log(longestValidParantheses("((()))")) // => 6
