@@ -34,29 +34,27 @@ Outcome:
 logarithmic time complexity because input is halved for each recursive call. 
 */
 
-function shiftedBSearch(arr, target, start, end) {
-    if (start > end) return -1
-
-    let mid = Math.floor((start + end) / 2);
-    if (arr[mid] === target) {
-        return mid;
-    }
-
-    if (arr[start] <= arr[mid]) {
-        if (target >= arr[start] && target <= arr[mid]) {
-            return shiftedBSearch(arr, target, start, mid - 1)
+function shiftedBSearch(nums, target) {
+    let left = 0; 
+    let right = nums.length - 1;
+    while (left <= r) {
+        let mid = Math.floor((right + left) / 2);
+        if (nums[mid] === target) return mid;
+        if (nums[left] < nums[mid]) {
+            if (target >= nums[left] && target < nums[mid]) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
         } else {
-            return shiftedBSearch(arr, target, mid + 1, end)
+            if (target <= nums[right] && target > nums[mid]) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
         }
     }
-
-    if (arr[mid] <= arr[end]) {
-        if (target >= arr[mid] && target <= arr[end]) {
-            return shiftedBSearch(arr, target, mid + 1, end);
-        } else {
-            return shiftedBSearch(arr, target, start, mid - 1)
-        }
-    }
+    return -1
 }
 
 const input = [12, 13, 14, 16, 17, 18, 20, 22, 1, 2, 3, 6, 9];

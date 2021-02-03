@@ -19,31 +19,52 @@ function ListNode(val, next) {
 @return {ListNode}
 */
 
+var mergeTwoLists = function (l1, l2) {
+
+    let result = toFlat(l1);
+    result = toFlat(l2, result)
+
+    result.sort((a, b) => a - b)
+    let resultOb = null
+    for (let i = result.length - 1; i >= 0; i--) {
+        resultOb = { val: result[i], next: resultOb }
+    }
+    return resultOb
+};
+
+let toFlat = (node, arr = []) => {
+    while (!!node) {
+        arr.push(node.val)
+        node = node.next
+    }
+    return arr
+}
+
+
 var mergeTwoLists = function(l1, l2) {
     if (!l1 && !l2) return null;
     if (!l1) return l2;
     if (!l2) return l1;
     
-    let root;
-    
-    function iterate(l1, l2, newList) {
+    function iterate(l1, l2, node) {
         if (!l1 && !l2) return null;
         
         if (!l1) {
-            newList.next = new ListNode(l2.val);
-            iterate(l1, l2.next, newList.next);
+            node.next = new ListNode(l2.val);
+            iterate(l1, l2.next, node.next);
         } else if (!l2) {
-            newList.next = new ListNode(l1.val);
-            iterate(l1.next, l2, newList.next);            
+            node.next = new ListNode(l1.val);
+            iterate(l1.next, l2, node.next);            
         } else if (l2.val < l1.val) {
-            newList.next = new ListNode(l2.val);
-            iterate(l1, l2.next, newList.next);
+            node.next = new ListNode(l2.val);
+            iterate(l1, l2.next, node.next);
         } else if (l1.val <= l2.val) {
-            newList.next = new ListNode(l1.val);
-            iterate(l1.next, l2, newList.next);
+            node.next = new ListNode(l1.val);
+            iterate(l1.next, l2, node.next);
         }
     }
-    
+
+    let root;
     if (l1.val <= l2.val) {
         root = new ListNode(l1.val);
         iterate(l1.next, l2, root);
