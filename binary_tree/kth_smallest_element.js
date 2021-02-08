@@ -9,16 +9,16 @@ right for each node.(the input given is misleading)
 */
 
 function TreeNode(val, left, right) {
-    this.val = (val===undefined ? 0 : val)
+    this.val = val
     this.left = (left===undefined ? null : left)
     this.right = (right===undefined ? null : right)
 }
 
-const kthSmallestSolution = (root, k, result = []) => {
+function kthSmallestSolution(node, k, result=[]) {
     if (!!node) {
-        kthSmallestSolution(root.left);
-        result.push(root.val);
-        kthSmallestSolution(root.right);
+        kthSmallestSolution(node.left, k, result);
+        result.push(node.val);
+        kthSmallestSolution(node.right, k, result);
     }
     return result[k - 1]
 }

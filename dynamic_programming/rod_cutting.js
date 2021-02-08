@@ -14,7 +14,6 @@ that length
 
 function rodCutting(arr) {
     const newArr = []; // memo
-    
     for (let i = 0; i < arr.length; i++) {
         let j = i - 1;
         let k = 0;

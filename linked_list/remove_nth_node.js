@@ -27,22 +27,22 @@ function ListNode(val, next) {
     this.next = (next===undefined ? null : next)
 }
 
-function reverseList(node) {
-    let l1 = null;
-    while (!!node) {
-        l1 = new ListNode(node.val, l1);
-        node = node.next;
-    }
-    return l1;
-}
 
 function removeNthFromEnd(head, n) {
-    head = reverseList(head);
-    let i = 1;
-    let l1 = null;
-
-    while (i < n) {
-
+    let first = head;
+    let second = head;
+    
+    let counter = 1;
+    while (counter <= n) {
+        second = second.next;
+        counter ++;
+    }
+    if (second === null) {
+        head.value = head.next.value;
+        head.next = head.next.next;
+    }
+    while (second.next !== null) {
+        
     }
 }
 

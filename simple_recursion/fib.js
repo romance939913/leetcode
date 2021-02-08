@@ -9,12 +9,16 @@
 
 
 
-function nthFib(n) {
-    if (n === 1) return 1;
-    if (n === 2) return 1;
+function nthFib(n, memo={ 1: 1, 2: 1}) {
+    if (n in memo) return memo[n];
 
-    return nthFib(n - 1) + nthFib(n - 2) // => 
+    memo[n] = nthFib(n - 1, memo) + nthFib(n - 2, memo) 
+    return memo[n]
 }
 
-console.log(nthFib(30))
+console.log(nthFib(3))
+console.log(nthFib(4))
+console.log(nthFib(5))
+console.log(nthFib(6))
+console.log(nthFib(50))
 
