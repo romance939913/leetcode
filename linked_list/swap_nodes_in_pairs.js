@@ -22,38 +22,21 @@ function ListNode(val, next) {
     this.next = (next===undefined ? null : next)
 }
 
-function createListFromArray(node, arr) {
-    if (arr.length <= 0) return null;
-    let nextNode = new ListNode(arr.shift());
-    node.next = nextNode;
-    createListFromArray(nextNode, arr)
-}
-
 var swapPairs = function (head) {
-    let arr = [];
-    let node = head;
-
-    while (!!node) {
-        arr.push(node.val);
-        node = node.next;
-    }
-
-    let i = 0;
-    while (i < arr.length - 1) {
-        if (arr[i + 1] !== undefined) {
-            [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
-        }
-        i += 2
-    }
-
-    let newHead = new ListNode(arr.shift());
-    rebuildList(newHead, arr)
-
-    return newHead;
+    if(head === null || head.next === null) return head;
+    debugger
+    let first = head.next; // => 4
+    let second = head.next.next; // => null 
+    
+    first.next = head; // => 3
+    head.next = swapPairs(second); null
+    return first;
+    // 2 -> 1 -> 4 -> 3 -> null
 };
 
-let input = [4, 0, 6, 2, 8];
-let inputHead = new ListNode(input.shift())
-createListFromArray(inputHead, input)
+let head = new ListNode(1)
+head.next = new ListNode(2);
+head.next.next = new ListNode(3);
+head.next.next.next = new ListNode(4);
 
-console.log(swapPairs(inputHead))
+console.log(swapPairs(head))
