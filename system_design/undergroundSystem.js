@@ -12,40 +12,7 @@ The average time is computed from all the previous traveling from startStation t
 Call to getAverageTime is always valid.
 You can assume all calls to checkIn and checkOut methods are consistent. If a customer gets in at time t1 at some station, they get out at time t2 with t2 > t1. All events happen in chronological order.
 
- 
-
-Example 1:
-Input
-["UndergroundSystem","checkIn","checkIn","checkIn","checkOut","checkOut","checkOut","getAverageTime","getAverageTime","checkIn","getAverageTime","checkOut","getAverageTime"]
-[[],[45,"Leyton",3],[32,"Paradise",8],[27,"Leyton",10],[45,"Waterloo",15],[27,"Waterloo",20],[32,"Cambridge",22],["Paradise","Cambridge"],["Leyton","Waterloo"],[10,"Leyton",24],["Leyton","Waterloo"],[10,"Waterloo",38],["Leyton","Waterloo"]]
-
-Output
-[null,null,null,null,null,null,null,14.00000,11.00000,null,11.00000,null,12.00000]
-
-Explanation
-UndergroundSystem undergroundSystem = new UndergroundSystem();
-undergroundSystem.checkIn(45, "Leyton", 3);
-undergroundSystem.checkIn(32, "Paradise", 8);
-undergroundSystem.checkIn(27, "Leyton", 10);
-undergroundSystem.checkOut(45, "Waterloo", 15);
-undergroundSystem.checkOut(27, "Waterloo", 20);
-undergroundSystem.checkOut(32, "Cambridge", 22);
-undergroundSystem.getAverageTime("Paradise", "Cambridge");       // return 14.00000. There was only one travel from "Paradise" (at time 8) to "Cambridge" (at time 22)
-undergroundSystem.getAverageTime("Leyton", "Waterloo");          // return 11.00000. There were two travels from "Leyton" to "Waterloo", a customer with id=45 from time=3 to time=15 and a customer with id=27 from time=10 to time=20. So the average time is ( (15-3) + (20-10) ) / 2 = 11.00000
-undergroundSystem.checkIn(10, "Leyton", 24);
-undergroundSystem.getAverageTime("Leyton", "Waterloo");          // return 11.00000
-undergroundSystem.checkOut(10, "Waterloo", 38);
-undergroundSystem.getAverageTime("Leyton", "Waterloo");          // return 12.00000
-
 Example 2:
-Input
-["UndergroundSystem","checkIn","checkOut","getAverageTime","checkIn","checkOut","getAverageTime","checkIn","checkOut","getAverageTime"]
-[[],[10,"Leyton",3],[10,"Paradise",8],["Leyton","Paradise"],[5,"Leyton",10],[5,"Paradise",16],["Leyton","Paradise"],[2,"Leyton",21],[2,"Paradise",30],["Leyton","Paradise"]]
-
-Output
-[null,null,null,5.00000,null,null,5.50000,null,null,6.66667]
-
-Explanation
 UndergroundSystem undergroundSystem = new UndergroundSystem();
 undergroundSystem.checkIn(10, "Leyton", 3);
 undergroundSystem.checkOut(10, "Paradise", 8);
@@ -58,52 +25,75 @@ undergroundSystem.checkOut(2, "Paradise", 30);
 undergroundSystem.getAverageTime("Leyton", "Paradise"); // return 6.66667
  
 
-Constraints:
+Questions: are averages affected by the time of the day? 
+Should there be a rush hour component?
 
-There will be at most 20000 operations.
-1 <= id, t <= 106
-All strings consist of uppercase and lowercase English letters, and digits.
-1 <= stationName.length <= 10
-Answers within 10-5 of the actual value will be accepted as correct.
+Strategy:
+Goal is to make every method O(1) time complexity
+Instance variables
+this.currentRiders = {
+    riderId: ["departureStation", time]
+};
+this.routes = {
+	“departureStation”: {
+		“destinationStation1”: [avg, tripCount],
+		“destinationStation2”: [avg, tripCount]
+    },
+}
+
+Upon checkin:
+enter into currentRiders => [id] = [“departure station”, time]
+
+Upon checkout:
+Find the currentRider’s departure station in the currentRider’s table
+Find the station in this.departures, and it’s corresponding destination
+execute ((avg * tripCount) + (t2 - t1))  / (tripCount + 1) to get new average
+Increment trip count
+Remove currentRider
+
+Upon GetAverageTime
+Index into departures, index into corresponding destination, return avg;
+
 */
 
 var UndergroundSystem = function() {
-    
+    this.riders = {};
+    this.routes = {};
 };
 
-/*
- @param {number} id 
- @param {string} stationName 
- @param {number} t
- @return {void}
-*/
-UndergroundSystem.prototype.checkIn = function(id, stationName, t) {
-    
+UndergroundSystem.prototype.checkIn = function(id, departure, t) {
+    this.riders[id] = [departure, t];
+    if (!this.routes[departure]) this.routes[departure] = {};
 };
 
-/*
- @param {number} id 
- @param {string} stationName 
- @param {number} t
- @return {void}
-*/
-UndergroundSystem.prototype.checkOut = function(id, stationName, t) {
-    
+UndergroundSystem.prototype.checkOut = function(id, destination, t) {
+    let departure = this.riders[id][0];
+    let tripTime = t - this.riders[id][1];
+    if (!this.routes[departure][destination]) {
+        this.routes[departure][destination] = [tripTime, 1];
+    } else {
+        let avg = this.routes[departure][destination][0];
+        let totalTrips = this.routes[departure][destination][1];
+        let newAvg = ((avg * totalTrips) + tripTime) / (totalTrips + 1);
+        this.routes[departure][destination] = [newAvg, totalTrips + 1];
+    }
+    delete this.riders[id]
 };
 
-/*
- @param {string} startStation 
- @param {string} endStation
- @return {number}
-*/
-UndergroundSystem.prototype.getAverageTime = function(startStation, endStation) {
-    
+UndergroundSystem.prototype.getAverageTime = function(departure, destination) {
+    return this.routes[departure][destination][0]
 };
 
-/*
- Your UndergroundSystem object will be instantiated and called as such:
- var obj = new UndergroundSystem()
- obj.checkIn(id,stationName,t)
- obj.checkOut(id,stationName,t)
- var param_3 = obj.getAverageTime(startStation,endStation)
-*/
+let undergroundSystem = new UndergroundSystem();
+undergroundSystem.checkIn(45, "Leyton", 3);
+undergroundSystem.checkIn(32, "Paradise", 8);
+undergroundSystem.checkIn(27, "Leyton", 10);
+undergroundSystem.checkOut(45, "Waterloo", 15);
+undergroundSystem.checkOut(27, "Waterloo", 20);
+undergroundSystem.checkOut(32, "Cambridge", 22);
+console.log(undergroundSystem.getAverageTime("Paradise", "Cambridge"));       // return 14.00000. 
+console.log(undergroundSystem.getAverageTime("Leyton", "Waterloo"));          // return 11.00000. 
+undergroundSystem.checkIn(10, "Leyton", 24);
+console.log(undergroundSystem.getAverageTime("Leyton", "Waterloo"));          // return 11.00000
+undergroundSystem.checkOut(10, "Waterloo", 38);
+console.log(undergroundSystem.getAverageTime("Leyton", "Waterloo"));          // return 12.00000
