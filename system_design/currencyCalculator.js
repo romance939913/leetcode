@@ -63,6 +63,9 @@ class Exchange {
         if (!!this.currencies[top][bottom]) {
             console.log("answer found in original data structure")
             return this.currencies[top][bottom];
+        } else if (this.cache[top+bottom]) {
+            console.log("used cache to find the answer!")
+            return this.cache[top+bottom];
         } else {
             let queue = [top, 1];
             let set = new Set();
@@ -72,6 +75,7 @@ class Exchange {
                 let rate = queue.shift();
                 if (this.currencies[crncy][bottom]) {
                     console.log("answer found through BFS");
+                    this.cache[top + bottom] = rate * this.currencies[crncy][bottom];
                     return rate * this.currencies[crncy][bottom];
                 } else {
                     let keys = Object.keys(this.currencies[crncy]);
@@ -79,6 +83,9 @@ class Exchange {
                         if (set.has(keys[i])) continue;
                         set.add(keys[i]);
                         queue.push(keys[i], rate * this.currencies[crncy][keys[i]])
+                        if (!this.currencies[top][keys[i]] && !this.cache[top+keys[i]]) {
+                            this.cache[top+keys[i]] = rate * this.currencies[crncy][keys[i]]
+                        }
                     }
                 }
             }
