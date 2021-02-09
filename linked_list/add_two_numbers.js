@@ -15,8 +15,11 @@ Output: 7 -> 8 -> 0 -> 7
 
 Questions:
 
-Strategy: Use a helper recurse function to move through both input lists. declare a result 
-head outside of the helper function.
+Strategy: 
+create a while loop that will loop until both l1 and l2 === null
+add both values (unless ones null) and if its less then 10, link a new node with that value
+if it's greater than 10, create a node with the modded val and carry a 1 to the next loop
+
 
 Outcome:
 
@@ -26,13 +29,3 @@ function ListNode(val, next) {
   this.val = (val===undefined ? 0 : val)
   this.next = (next===undefined ? null : next)
 }
-
-var addTwoNumbers = function (l1, l2) {
-  let root;
-
-  function recurse(node1, node2, remainder) {
-
-  }
-  recurse()
-
-};
