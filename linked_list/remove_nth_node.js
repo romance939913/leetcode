@@ -27,7 +27,6 @@ function ListNode(val, next) {
     this.next = (next===undefined ? null : next)
 }
 
-
 function removeNthFromEnd(head, n) {
     let first = head;
     let second = head;

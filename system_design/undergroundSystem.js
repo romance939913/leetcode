@@ -54,35 +54,37 @@ Remove currentRider
 Upon GetAverageTime
 Index into departures, index into corresponding destination, return avg;
 
+outcome: all operations are O(1) Time complexity
 */
+class UndergroundSystem {
+    constructor() {
+        this.riders = {};
+        this.routes = {};
+    };
 
-var UndergroundSystem = function() {
-    this.riders = {};
-    this.routes = {};
-};
-
-UndergroundSystem.prototype.checkIn = function(id, departure, t) {
-    this.riders[id] = [departure, t];
-    if (!this.routes[departure]) this.routes[departure] = {};
-};
-
-UndergroundSystem.prototype.checkOut = function(id, destination, t) {
-    let departure = this.riders[id][0];
-    let tripTime = t - this.riders[id][1];
-    if (!this.routes[departure][destination]) {
-        this.routes[departure][destination] = [tripTime, 1];
-    } else {
-        let avg = this.routes[departure][destination][0];
-        let totalTrips = this.routes[departure][destination][1];
-        let newAvg = ((avg * totalTrips) + tripTime) / (totalTrips + 1);
-        this.routes[departure][destination] = [newAvg, totalTrips + 1];
-    }
-    delete this.riders[id]
-};
-
-UndergroundSystem.prototype.getAverageTime = function(departure, destination) {
-    return this.routes[departure][destination][0]
-};
+    checkIn(id, departure, t) {
+        this.riders[id] = [departure, t];
+        if (!this.routes[departure]) this.routes[departure] = {};
+    };
+    
+    checkOut(id, destination, t) {
+        let departure = this.riders[id][0];
+        let tripTime = t - this.riders[id][1];
+        if (!this.routes[departure][destination]) {
+            this.routes[departure][destination] = [tripTime, 1];
+        } else {
+            let avg = this.routes[departure][destination][0];
+            let totalTrips = this.routes[departure][destination][1];
+            let newAvg = ((avg * totalTrips) + tripTime) / (totalTrips + 1);
+            this.routes[departure][destination] = [newAvg, totalTrips + 1];
+        }
+        delete this.riders[id]
+    };
+    
+    getAverageTime(departure, destination) {
+        return this.routes[departure][destination][0]
+    };
+}
 
 let undergroundSystem = new UndergroundSystem();
 undergroundSystem.checkIn(45, "Leyton", 3);

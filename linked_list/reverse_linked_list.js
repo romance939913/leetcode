@@ -18,20 +18,5 @@ function ListNode(val, next) {
 @return {ListNode} */
 
 var reverseList = function(head) {
-    let arr = [head.val];
-    let loop = head;
-    while (!!loop.next) {
-        loop = loop.next;
-        arr.push(loop.val);
-    }
-    arr.reverse();
-    let result = new ListNode(arr.shift());
-    function iterate(node) {
-        if (!arr.length) return null;
-        let newNode = new ListNode(arr.shift());
-        node.next = newNode;
-        iterate(newNode);
-    }
-    iterate(result);
-    return result;
+
 };

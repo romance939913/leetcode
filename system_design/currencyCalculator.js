@@ -32,7 +32,7 @@ this.currencies = {
         'EUR': 1.1,
         'JPY': 141,
     },
-}
+} 
 
 Searching for non-direct exchanges:
 conduct a breadth first search where the function looks through every one of the
@@ -45,7 +45,6 @@ for each currency in the path
 
 incorporating a cache:
 This will prevent that long BFS method from executing as often^^
-
 
 outcome: 
 This will make for an expensive object construction, but now looking up the
