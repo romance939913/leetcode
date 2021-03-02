@@ -22,16 +22,16 @@ function ListNode(val, next) {
     this.next = (next===undefined ? null : next)
 }
 
-var swapPairs = function (head) {
-    if(head === null || head.next === null) return head;
+var swapPairs = function (node) {
+    if (!node || !node.next) return node;
 
-    let first = head.next; // => 4
-    let second = head.next.next; // => null 
-    
-    first.next = head; // => 3
-    head.next = swapPairs(second); null
+    let first = node.next;
+    let third = node.next.next;
+
+    first.next = node;
+    node.next = swapPairs(third);
+
     return first;
-    // 2 -> 1 -> 4 -> 3 -> null
 };
 
 let head = new ListNode(1)

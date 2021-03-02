@@ -1,5 +1,3 @@
-import pdb
-
 def quick_sort(nums):
     if len(nums) <= 1:
         return nums
@@ -10,4 +8,5 @@ def quick_sort(nums):
 
     return quick_sort(left) + pivot + quick_sort(right)
 
-print(quick_sort([4, 2, 6, 8, 1, 3, 11, 5]))
+print(quick_sort([6, 2, 5, 1, 4, 8, 7, 3]))
+

@@ -30,19 +30,14 @@ Explanation: The root node's value is 5 but its right child's value is 4.
 */
 
 function validateBST(root) {
-  const answer = [];
-  
+  let result = true;
   function dfs(node) {
-    if (!!node) {
-      dfs(node.left);
-      answer.push(node.val);
-      dfs(node.right);
-    }
+    if (!node) return null;
+    if (node.left && node.val < node.left.val) result = false;
+    if (node.right && node.val > node.right.val) result = false;
+    dfs(node.left);
+    dfs(node.right);
   }
   dfs(root);
-
-  for (let i = 0; i < answer.length - 1; i++) {
-    if (answer[i] >= answer[i + 1]) return false;
-  }
-  return true;
+  return result;
 }
