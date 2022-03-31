@@ -52,14 +52,11 @@ function balancedParens(str) {
   const pairs = { '(': ')', '[': ']', '{': '}' };
 
   for (let i = 0; i < str.length; i++) {
-    var char = str[i];
-
+    const char = str[i]
     if (pairs[char]) {
       stack.push(char);
-    } else if (char === '}' || char === ']' || char === ')') {
-      if (pairs[stack.pop()] !== char) {
-        return false;
-      }
+    } else if (pairs[stack[stack.length - 1]] === char) {
+      stack.pop()
     }
   }
 

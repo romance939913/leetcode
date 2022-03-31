@@ -26,43 +26,43 @@ Outcome:
 */
 
 function ListNode(val, next) {
-  this.val = (val === undefined ? 0 : val)
-  this.next = (next === undefined ? null : next)
+    this.val = (val === undefined ? 0 : val)
+    this.next = (next === undefined ? null : next)
 }
 
 function addTwoNumbers(l1, l2) {
-  let carry = 0;
-  let node = null;
-  node = helper(l1, l2);
-  let newHead = node;
-  if (l1) l1 = l1.next;
-  if (l2) l2 = l2.next;
-  while (l1 || l2) {
-    node.next = helper(l1, l2);
-    node = node.next;
+    let carry = 0;
+    let node = null;
+    node = helper(l1, l2);
+    let newHead = node;
     if (l1) l1 = l1.next;
     if (l2) l2 = l2.next;
-  }
+    while (l1 || l2) {
+        node.next = helper(l1, l2);
+        node = node.next;
+        if (l1) l1 = l1.next;
+        if (l2) l2 = l2.next;
+    }
 
-  function helper(l1, l2) {
-    let sum = 0;
-    if (!l1) {
-      sum = l2.val + carry
-    } else if (!l2) {
-      sum = l1.val + carry
-    } else {
-      sum = l1.val + l2.val + carry;
+    function helper(l1, l2) {
+        let sum = 0;
+        if (!l1) {
+            sum = l2.val + carry
+        } else if (!l2) {
+            sum = l1.val + carry
+        } else {
+            sum = l1.val + l2.val + carry;
+        }
+        if (sum > 9) {
+            sum %= 10;
+            carry = 1
+        } else {
+            carry = 0;
+        }
+        return new ListNode(sum);
     }
-    if (sum > 9) {
-      sum %= 10;
-      carry = 1
-    } else {
-      carry = 0;
-    }
-    return new ListNode(sum);
-  }
-  if (carry === 1) node.next = new ListNode(carry);
-  return newHead
+    if (carry === 1) node.next = new ListNode(carry);
+    return newHead
 };
 
 
@@ -72,10 +72,10 @@ function makeListFromArray(node, arr) {
   node.next = new ListNode(arr.shift());
   makeListFromArray(node.next, arr)
 }
-let arr1 = [9, 9, 9, 9, 9, 9, 9];
-let arr2 = [9, 9, 9, 9]
+let arr1 = [2, 4, 3];
+let arr2 = [5, 6, 8]
 let l1 = new ListNode(arr1.shift());
 let l2 = new ListNode(arr2.shift());
 makeListFromArray(l1, arr1);
 makeListFromArray(l2, arr2);
-console.log(addTwoNumbers(l1, l2))
+console.log(addTwoNumbers(l1, l2)) // => 708
