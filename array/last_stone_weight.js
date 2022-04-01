@@ -23,14 +23,24 @@ Input: stones = [1]
 Output: 1
 
 Strategy:
-sort the stones so it's [1, 1, 2, 4, 7, 8];
-compare the two and put the absolute value back into the arr => [1, 1, 2, 4, 1]
-sort again and continue the process until there's one stone left
+Sort the stones so that it becomes [1, 1, 2, 4, 7, 8]
+pop off the last two stones and compare the weights and 
+add the Math.abs(stones[-1] - stones[-2]) to the array unless it's 0
+repeat process until there's 1 stone left
+
+outcome:
+
 */
 
 function lastStoneWeight(stones) {
-    
+    debugger
+    while (stones.length > 1) {
+        stones.sort((a, b) => a - b);
+        let newStone = stones.pop() - stones.pop();
+        if (newStone > 0) stones.push(newStone)
+    }
+    return stones.length ? stones[0] : 0;
 }
 
-console.log(lastStoneWeight([2, 7, 4, 1, 8, 1]))
-console.log(lastStoneWeight([8, 10, 4]))
+console.log(lastStoneWeight([2, 7, 4, 1, 8, 1])) // => 1
+console.log(lastStoneWeight([8, 10, 4])) // => 2

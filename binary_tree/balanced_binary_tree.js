@@ -27,7 +27,7 @@ ex3:
         2
           \
             3
-outcome: false
+outcome: false (because left subtree is depth=1 and right subtree is depth=3)
          
 
 strategy:
@@ -66,5 +66,4 @@ const findMaxDepth = (node, depth = 0) => {
   let right = findMaxDepth(node.right, depth + 1);
   return Math.max(left, right);
 }
-
 
