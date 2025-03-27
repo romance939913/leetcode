@@ -20,7 +20,7 @@ Strategy:
 
 const permute = function (nums) {
     const permutations = [];
-    debugger
+    
     const rcr = (arr, permutation) => {
         if (!arr.length) {
             permutations.push(permutation);

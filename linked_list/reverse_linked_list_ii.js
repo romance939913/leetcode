@@ -12,7 +12,10 @@ Output: 1->4->3->2->5->NULL
 @param {number} n
 @return {ListNode} 
 
-Definition for singly-linked list. */
+Definition for singly-linked list. 
+
+make array, reverse array slice, remake linked list
+*/
 
 function ListNode(val, next) {
     this.val = (val===undefined ? 0 : val)

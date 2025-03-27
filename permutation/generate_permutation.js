@@ -16,24 +16,23 @@ Strategy:
 create an iterator i 
 */
 
-const permutator = (inputArr) => {
+const permutations = (inputArr) => {
     let result = [];
     debugger
-    const permute = (arr, m = []) => {
+    const permute = (arr, newArr = []) => {
         if (arr.length === 0) {
-            result.push(m)
+            result.push(newArr)
         } else {
             for (let i = 0; i < arr.length; i++) {
                 let curr = arr.slice();
                 let next = curr.splice(i, 1);
-                permute(curr.slice(), m.concat(next))
+                permute(curr.slice(), newArr.concat(next))
             }
         }
     }
 
     permute(inputArr)
-
     return result;
 }
 
-console.log(permutator(['c', 'a', 't']))
+console.log(permutations(['c', 'a', 't']))

@@ -75,3 +75,16 @@ var mergeTwoLists = function(l1, l2) {
     
     return root;
 };
+
+function ListNode(val, next) {
+    this.val = (val === undefined ? 0 : val)
+    this.next = (next === undefined ? null : next)
+}
+
+let list1 = [1, 2, 4];
+let list2 = [1, 3, 4];
+
+function makeLinkedLists(arr) {
+    let root = new ListNode(arr[0])
+    
+}
